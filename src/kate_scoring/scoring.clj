@@ -16,8 +16,9 @@
    {:sub-scale :mr
     :questions ["1d" "2c" "3b" "4c" "5c" "6b" "7d" "8d" "9c" "10f" "11a" "12f"]}])
 
-(defn parse [survey]
-  (map #(Integer/parseInt %) survey))
+(defn parse [[id & results]]
+  {:id id
+   :results (map #(Integer/parseInt %) results)})
 
 (def questions
   (for [number (map inc (range 12))
@@ -59,15 +60,20 @@
 
 (defn save-scores-file [file-name scores]
   (with-open [w (io/writer file-name)]
-    (csv/write-csv w (cons (map :sub-scale sub-scales)
-                           (for [score-set scores]
-                             (map :score score-set))))))
+    (csv/write-csv w (cons (cons "ID" (map :sub-scale sub-scales))
+                           (for [{:keys [id results]} scores]
+                             (cons id (map :score results)))))))
+
+(defn calculate-scores [{:keys [id results]}]
+  {:id id
+   :results (-> results
+                survey->map
+                map->scores
+                apply-reverses
+                average-answers)})
 
 (comment
   (->> (load-csv-file "/tmp/results.csv")
        (map parse)
-       (map survey->map)
-       (map map->scores)
-       (map apply-reverses)
-       (map average-answers)
+       (map calculate-scores)
        (save-scores-file "/tmp/scores.csv")))
