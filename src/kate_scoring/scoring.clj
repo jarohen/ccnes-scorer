@@ -29,13 +29,23 @@
 
 (defn load-csv-file [file-name]
   (with-open [r (io/reader file-name)]
-    (doall (rest (csv/read-csv r
-                               :separator \tab)))))
+    (doall (rest (csv/read-csv r)))))
 
 (defn map->scores [m]
   (for [{:keys [sub-scale questions]} sub-scales]
     {:sub-scale sub-scale
      :answers (map #(get m %) questions)}))
+
+(defn reverse-answer [answer]
+  (- 8 answer))
+
+(defn apply-reverses [m]
+  (-> (vec m)
+      (update-in [0 :answers] vec)
+      (update-in [0 :answers 1] reverse-answer)
+      (update-in [0 :answers 6] reverse-answer)
+      (update-in [0 :answers 7] reverse-answer)
+      (update-in [0 :answers 9] reverse-answer)))
 
 (defn round-2 [x]
   (/ (Math/round (* 100 x)) 100.0))
@@ -47,9 +57,17 @@
                 (/ 12.0)
                 round-2)}))
 
+(defn save-scores-file [file-name scores]
+  (with-open [w (io/writer file-name)]
+    (csv/write-csv w (cons (map :sub-scale sub-scales)
+                           (for [score-set scores]
+                             (map :score score-set))))))
+
 (comment
   (->> (load-csv-file "/tmp/results.csv")
        (map parse)
        (map survey->map)
        (map map->scores)
-       (map average-answers)))
+       (map apply-reverses)
+       (map average-answers)
+       (save-scores-file "/tmp/scores.csv")))
