@@ -1,4 +1,4 @@
-(ns kate-scoring.scoring
+(ns ccnes.scoring
   (:require [clojure.data.csv :as csv]
             [clojure.java.io :as io]))
 
