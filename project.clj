@@ -7,7 +7,10 @@
 
                  [ring "1.2.0"]
                  [compojure "1.1.5"]
-                 [hiccup "1.0.3"]]
+                 [hiccup "1.0.3"]
+
+                 [jayq "2.4.0"]
+                 [prismatic/dommy "0.1.1"]]
 
   :source-paths ["src/clojure"]
   :resource-paths ["resources" "target/resources"]
