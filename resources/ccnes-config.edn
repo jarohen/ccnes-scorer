@@ -1,2 +1,5 @@
 {:nrepl {:port 7888}
- :web {:port 3000}}
+ :web {:port 3000}
+
+ :nomad/hosts {"cirrus"
+               :web {:port 9900}}}
