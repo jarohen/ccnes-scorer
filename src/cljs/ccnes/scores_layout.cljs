@@ -23,7 +23,8 @@
              (format "%.2f" score)]])])))))
 
 (defn render-scores [scores scores-el]
-  (d/replace-contents! scores-el (scores-node scores)))
+  (d/replace-contents! scores-el (scores-node scores))
+  (.scrollIntoView scores-el))
 
 (defn bind-scores [scores scores-el]
   (add-watch scores ::layout
