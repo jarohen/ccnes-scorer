@@ -16,5 +16,6 @@ div.sq-statement, div.scores {
 
 div.scores table {
     width: 50%;
+    margin-left: 4em;
     
 }
