@@ -22,4 +22,6 @@
                                    :output-to "target/resources/js/main.js",
                                    :optimisations :whitespace}}]}
 
-  :main ccnes.main)
+  :main ccnes.main
+
+  :aliases {"start" ["trampoline" "run"]})
