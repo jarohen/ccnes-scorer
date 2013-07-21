@@ -1,7 +1,8 @@
 (ns ccnes.radios
   (:require [ccnes.questions :refer [questions possible-scores]]
             [dommy.core :as d]
-            [jayq.core :as jq])
+            [jayq.core :as jq]
+            [jayq.util :refer [wait]])
   (:require-macros [dommy.macros :refer [node sel1]]))
 
 (defn decode-key [key-code]
@@ -35,7 +36,8 @@
 
 (defn focus-first-question! [controls]
   (let [first-question (get-in controls [1 "a" 1])]
-    (.focus first-question)))
+    (wait 500
+          #(.focus first-question))))
 
 (defn make-controls []
   (into {}
