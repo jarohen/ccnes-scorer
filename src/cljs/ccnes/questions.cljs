@@ -1,5 +1,8 @@
 (ns ccnes.questions)
 
+(def possible-scores
+  (map inc (range 7)))
+
 (def questions
   [{:number 1
     :statement "If my child becomes angry because he/she is sick or
