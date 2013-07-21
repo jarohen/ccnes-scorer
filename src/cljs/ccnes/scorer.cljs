@@ -35,7 +35,6 @@
   (add-watch answers ::scorer
              (fn [_ _ _ answers]
                (reset! scores
-                       (doto (if-let [missing (seq (answers-missing answers))]
-                               {:missing missing}
-                               {:scores (calculate-scores answers)})
-                         (-> pr-str js/console.log))))))
+                       (if-let [missing (seq (answers-missing answers))]
+                         {:missing missing}
+                         {:scores (calculate-scores answers)})))))

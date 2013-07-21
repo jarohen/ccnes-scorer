@@ -3,6 +3,17 @@
 (def possible-scores
   (map inc (range 7)))
 
+(def sub-scale-order
+  [:dr :pr :ee :efr :pfr :mr])
+
+(def sub-scale-name
+  {:dr "Distress Reactions (DR)"
+   :pr "Punitive Reactions (PR)"
+   :ee "Expressive Encouragement (EE)"
+   :efr "Emotion-Focused Reactions (EFR)"
+   :pfr "Problem-Focused Reactions (PFR)"
+   :mr "Minimization Reactions (MR)"})
+
 (def questions
   [{:number 1
     :statement "If my child becomes angry because he/she is sick or
