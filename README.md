@@ -53,7 +53,7 @@ I've currently got this deployed at [http://ccnes.pcr.me.uk].
 
 ## Licence
 
-Code: &copy James Henderson 2013, all rights reserved. Feel free to
+Code: &copy; James Henderson 2013, all rights reserved. Feel free to
 get hold of me if you want to re-use this though!
 
 CCNES: Fabes, R.A., Eisenberg, N., & Bernzweig, J. (1990). The Coping
