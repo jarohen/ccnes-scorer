@@ -2,4 +2,4 @@
  :web {:port 3000}
 
  :nomad/hosts {"cirrus"
-               :web {:port 9900}}}
+               {:web {:port 9900}}}}
