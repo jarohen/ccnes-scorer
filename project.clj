@@ -20,7 +20,12 @@
   :cljsbuild {:builds [{:source-paths ["src/cljs"],
                         :compiler {:pretty-print true,
                                    :output-to "target/resources/js/main.js",
-                                   :optimisations :whitespace}}]}
+                                   :optimizations :whitespace}}
+                       {:id "prod"
+                        :source-paths ["src/cljs"],
+                        :compiler {:output-to "target/resources/js/main.js",
+                                   :optimizations :advanced
+                                   :externs ["resources/cljs-externs/jQuery.js"]}}]}
 
   :main ccnes.main
 
