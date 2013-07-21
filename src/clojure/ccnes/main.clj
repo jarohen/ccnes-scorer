@@ -17,14 +17,16 @@
     (include-js "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
     (include-css "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css")
     (include-js "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js")
-    (include-js "/js/main.js")]
+    (include-js "/js/main.js")
+    (include-css "/css/questions.css")]
    [:body
     [:div#main.container "Hello world!"]]))
 
 (defroutes handler
   (GET "/" []
        (response (skeleton)))
-  (resources "/js" {:root "js"}))
+  (resources "/js" {:root "js"})
+  (resources "/css" {:root "css"}))
 
 (defn -main []
   (when-let [nrepl-port (get-in (config) [:nrepl :port])]
