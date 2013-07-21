@@ -1,7 +1,7 @@
 (ns ccnes.main
   (:require [clojure.tools.nrepl.server :as nrepl]
             [ring.adapter.jetty :refer [run-jetty]]
-            [ring.util.response :refer [response]]
+            [ring.util.response :refer [response content-type]]
             [hiccup.page :refer [html5 include-js include-css]]
             [nomad :refer [defconfig]]
             [clojure.java.io :as io]
@@ -24,7 +24,8 @@
 
 (defroutes handler
   (GET "/" []
-       (response (skeleton)))
+       (-> (response (skeleton))
+           (content-type "text/html;charset=UTF-8")))
   (resources "/js" {:root "js"})
   (resources "/css" {:root "css"}))
 
